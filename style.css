@@ -144,7 +144,9 @@ li {
     float: right;
     margin-left: 90px;
     width: 200px;
-    height: auto;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .post {
