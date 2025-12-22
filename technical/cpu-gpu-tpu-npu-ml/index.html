@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPUs, GPUs, NPUs, and TPUs: The Hardware Foundation of Modern AI - Koshiq Hossain</title>
+    <meta name="description"
+        content="Understanding the evolution from CPUs to specialized accelerators like GPUs, NPUs, and TPUs, and how to optimize AI workloads for each architecture.">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../article_style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Koshiq Hossain</h1>
+        <h2>technical blog</h2>
+        <div class="social-icons">
+            <a href="https://github.com/koshiq" target="_blank" class="social-link" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+            </a>
+            <a href="https://linkedin.com/in/koshiq" target="_blank" class="social-link" title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            </a>
+        </div>
+        <br>
+        <a href="../../index.html" class="about-me-link">home</a>
+        &nbsp; &nbsp;
+        <a href="../../about/about.html" class="about-me-link">about me</a>
+        &nbsp; &nbsp;
+        <a href="../../non-technical/non-technical.html" class="about-me-link">non-technical</a>
+        &nbsp; &nbsp;
+        <a href="../../projects/projects.html" class="about-me-link">projects</a>
+        &nbsp; &nbsp;
+        <a href="../technical.html" class="about-me-link">technical</a>
+    </header>
+    <main>
+        <article>
+            <h1 class="article-title">CPUs, GPUs, NPUs, and TPUs: The Hardware Foundation of Modern AI</h1>
+            <p class="article-date">December 21, 2025</p>
+
+            <section>
+                <p>The explosive growth of artificial intelligence has been fueled not just by algorithmic innovation,
+                    but by a fundamental shift in how we think about computing hardware. The journey from CPUs to
+                    specialized accelerators represents one of the most important hardware transitions in modern
+                    computing. Understanding these processors and how to optimize for them has become essential
+                    knowledge for machine learning engineers, systems researchers, and anyone building AI applications
+                    at scale.</p>
+            </section>
+
+            <section>
+                <h2>The Evolution: Why We Stopped Using Just CPUs</h2>
+                <p>In the early days of deep learning, researchers trained neural networks on CPUs. It worked—but it was
+                    slow. A model that takes hours on a GPU might take days or weeks on a CPU. This wasn't a limitation
+                    of software engineering; it was fundamental to how these processors are architected.</p>
+
+                <p>CPUs are optimized for sequential, general-purpose workloads. They prioritize low latency and
+                    instruction-level parallelism, with sophisticated branch prediction and out-of-order execution. They
+                    have large cache hierarchies and are built to handle complex control flow efficiently. This makes
+                    them excellent for database operations, web servers, and traditional applications.</p>
+
+                <p>But neural network computation is fundamentally different. Training and inference involve performing
+                    the same operation (matrix multiplication, convolution, activation functions) on massive amounts of
+                    data, often with straightforward control flow. This is a perfect match for data-level
+                    parallelism—doing the same thing to different pieces of data simultaneously.</p>
+
+                <p>This mismatch is why GPUs, originally designed for rendering graphics, became the engine that powered
+                    the deep learning revolution.</p>
+            </section>
+
+            <section>
+                <h2>GPUs: The Workhorse of Modern AI</h2>
+                <p>Graphics processors excel at exactly what deep learning needs: massively parallel computation on
+                    large arrays of data. A modern GPU like the NVIDIA H100 contains over 14,000 CUDA cores, each
+                    capable of performing floating-point operations independently. This architecture enables processing
+                    millions of operations per second across different data elements.</p>
+
+                <p>GPUs became the default choice for AI workloads because they offered several critical advantages:</p>
+
+                <p><strong>Raw Throughput:</strong> A high-end GPU delivers 50-100x the floating-point operations per
+                    second compared to a CPU for the same power envelope. For training large language models, this
+                    translates to the difference between waiting weeks versus days.</p>
+
+                <p><strong>Memory Bandwidth:</strong> Neural networks shuffle enormous amounts of data. GPUs feature
+                    wide memory buses (with the H100 offering up to 3 TB/s bandwidth) that CPUs simply cannot match.
+                    This is crucial because in many operations, the bottleneck isn't computation—it's feeding data to
+                    the compute units fast enough.</p>
+
+                <p><strong>Programmability and Ecosystem:</strong> NVIDIA's CUDA and the broader GPU computing ecosystem
+                    provide mature tools, libraries, and frameworks. PyTorch, TensorFlow, and specialized libraries like
+                    cuBLAS and cuDNN are highly optimized for GPU execution. This ecosystem advantage is difficult to
+                    overstate—it compounds with each new library and optimization.</p>
+
+                <p><strong>Cost-Performance:</strong> While GPUs are expensive upfront, they've driven down the cost per
+                    operation for AI workloads dramatically compared to alternatives.</p>
+
+                <p>However, GPUs come with trade-offs. They consume significant power (an H100 draws up to 700W),
+                    require sophisticated cooling, and are overkill for some inference workloads. A language model might
+                    need powerful compute during training, but serving a single user query might not benefit from
+                    thousands of cores working in parallel.</p>
+            </section>
+
+            <section>
+                <h2>NPUs: AI Processing for the Masses</h2>
+                <p>Neural Processing Units represent a newer class of hardware designed specifically for neural network
+                    inference (though some are branching into training). Rather than being general accelerators like
+                    GPUs, NPUs are purpose-built for the computational patterns in modern deep learning.</p>
+
+                <p>Companies like Qualcomm, Apple, and MediaTek have integrated NPUs into smartphones and edge devices.
+                    Apple's Neural Engine in recent iPhones, for instance, can execute complex models locally—enabling
+                    on-device processing for tasks like photo enhancement, transcription, and language understanding
+                    without sending data to the cloud.</p>
+
+                <h3>Key characteristics of NPUs:</h3>
+
+                <p><strong>Energy Efficiency:</strong> NPUs are engineered to accomplish neural network computations
+                    with minimal power draw. An NPU might execute a model in milliwatts, where a GPU would use watts.
+                    This is critical for mobile and IoT devices where battery life is paramount.</p>
+
+                <p><strong>Reduced Precision:</strong> Most NPUs operate efficiently on lower-precision arithmetic—int8
+                    or even int4 quantization rather than float32. This saves memory, bandwidth, and compute while often
+                    maintaining acceptable accuracy for inference.</p>
+
+                <p><strong>Specialization:</strong> Unlike GPUs (which remain relatively general accelerators), NPUs are
+                    specialized. They excel at dense matrix operations fundamental to neural networks but may struggle
+                    with workloads that don't fit this pattern. This specialization drives efficiency gains.</p>
+
+                <p><strong>Deployment Context:</strong> NPUs are deployed where GPUs aren't practical—smartphones, IoT
+                    devices, edge servers, autonomous vehicles. They're enabling AI at the edge, reducing latency and
+                    improving privacy by processing data locally.</p>
+
+                <p>The emergence of capable NPUs has significant implications. Large language models are being optimized
+                    to run on mobile NPUs. Computer vision models operate continuously on edge devices. This shift is
+                    creating a computing hierarchy: data centers with GPUs/TPUs for training and heavy inference,
+                    regional servers with more modest acceleration, and billions of devices with lightweight NPUs
+                    handling user-facing workloads.</p>
+            </section>
+
+            <section>
+                <h2>TPUs: Google's Specialized Tensor Engines</h2>
+                <p>While NVIDIA has dominated GPU acceleration for AI, Google took a different approach: building custom
+                    silicon from the ground up for tensor operations. Tensor Processing Units (TPUs) are
+                    application-specific integrated circuits (ASICs) designed exclusively for machine learning
+                    workloads.</p>
+
+                <p>Unlike GPUs (which add neural network optimizations to graphics hardware), TPUs abandon GPU
+                    generality entirely. The tradeoff is striking:</p>
+
+                <p><strong>Extreme Specialization:</strong> TPUs implement tensor operations directly in hardware.
+                    Operations that a GPU accomplishes through thousands of parallel threads, a TPU accomplishes through
+                    specialized datapaths. This reduces overhead and improves efficiency.</p>
+
+                <p><strong>Efficiency:</strong> TPUs are remarkably efficient—they deliver high throughput while
+                    consuming less power than comparable GPUs. The latest TPU generations (TPUv5, TPUv6) continue
+                    pushing this boundary.</p>
+
+                <p><strong>Reduced Precision by Design:</strong> Like NPUs, TPUs emphasize lower precision computation.
+                    Newer generations support a dedicated 8-bit floating-point format (fp8) that balances range and
+                    precision for neural networks.</p>
+
+                <p><strong>Cost Considerations:</strong> TPUs aren't generally available for purchase. They're available
+                    primarily through Google Cloud, integrated into their hardware stack, and optimized for their
+                    software ecosystem (TensorFlow). This creates a different economic model than GPUs, which are
+                    commodity hardware available from multiple vendors.</p>
+
+                <p><strong>Trade-offs:</strong> TPUs are less flexible than GPUs. A workload that doesn't fit the tensor
+                    computation model natively might be slower on TPU. GPU vendors like NVIDIA have worked hard to
+                    support broader workloads (scientific computing, graphics, simulation), while TPUs remain
+                    laser-focused on ML.</p>
+            </section>
+
+            <section>
+                <h2>Hardware Optimization: Making the Most of Your Accelerator</h2>
+                <p>Choosing the right processor is half the battle. The other half is optimizing your code and
+                    algorithms for that specific hardware. This is where the field becomes particularly nuanced.</p>
+
+                <p><strong>Memory is Often the Real Bottleneck:</strong> The theoretical peak performance of modern
+                    accelerators far exceeds what you can achieve if you're not careful about memory access patterns. On
+                    a GPU, a poorly written kernel might achieve 5% of peak throughput simply because it's not moving
+                    data efficiently. This is why tools like roofline models (which plot algorithm arithmetic intensity
+                    against achievable performance) are essential for understanding where your bottlenecks really lie.
+                </p>
+
+                <p><strong>Precision Matters:</strong> Modern ML has embraced lower precision computation. Quantization
+                    (converting float32 weights to int8) and mixed precision training (using float16 for computation
+                    with float32 checkpoints) aren't just power-saving measures—they're often faster and sometimes train
+                    better. Understanding what precision your target hardware supports efficiently is crucial.</p>
+
+                <p><strong>Batch Size and Parallelism:</strong> Accelerators are most efficient when you keep them fully
+                    utilized. For GPUs, this often means using larger batch sizes to keep thousands of cores busy.
+                    However, larger batches require more memory and can affect convergence properties. Finding the sweet
+                    spot requires experimentation and understanding your hardware's memory constraints.</p>
+
+                <p><strong>Kernel Fusion and Compilation:</strong> Modern frameworks increasingly use compiler
+                    techniques to merge multiple operations into single kernels, reducing memory traffic. Tools like
+                    TVM, Triton, and vendor-specific compilers (NVCC for CUDA, XLA for TPUs) are becoming essential in
+                    the optimization pipeline. Hand-optimizing critical kernels in CUDA or HIP can yield dramatic
+                    speedups for bottleneck operations.</p>
+
+                <p><strong>Distributed Training Strategy:</strong> When scaling beyond a single accelerator, how you
+                    distribute computation matters enormously. Data parallelism (splitting batches across devices) is
+                    straightforward but communication-intensive. Model parallelism, pipeline parallelism, and tensor
+                    parallelism have different trade-offs depending on your network bandwidth, compute throughput, and
+                    model structure.</p>
+            </section>
+
+            <section>
+                <h2>The Heterogeneous Future</h2>
+                <p>The future of AI hardware isn't about finding a single winning processor—it's about orchestrating
+                    diverse hardware effectively. A single ML system might use:</p>
+
+                <ul>
+                    <li>GPUs in data centers for training</li>
+                    <li>TPUs in cloud infrastructure for dense inference</li>
+                    <li>NPUs on edge devices for latency-sensitive inference</li>
+                    <li>CPUs for preprocessing, control logic, and general computation</li>
+                </ul>
+
+                <p>This heterogeneity creates both opportunities and challenges. A well-designed system recognizes where
+                    different hardware excels and routes computation accordingly. This requires awareness of not just
+                    the hardware itself, but the software stacks, programming models, and optimization techniques for
+                    each.</p>
+            </section>
+
+            <section>
+                <h2>Practical Considerations</h2>
+                <p>If you're building AI systems today, here's what matters:</p>
+
+                <p><strong>For Training Large Models:</strong> GPUs (particularly NVIDIA's latest generations) remain
+                    the default because of ecosystem maturity and community support. However, TPUs (if you're on Google
+                    Cloud) offer compelling efficiency advantages if your workloads align with their architecture.</p>
+
+                <p><strong>For Inference at Scale:</strong> The choice depends entirely on your constraints.
+                    Latency-sensitive, low-volume inference? NPUs on edge devices or small model inference on CPUs might
+                    be perfect. High-volume dense inference? GPUs or TPUs excel. Hybrid workloads? You'll likely need
+                    multiple processor types.</p>
+
+                <p><strong>For Edge Deployment:</strong> NPUs are increasingly becoming the standard, with models being
+                    optimized specifically to run on mobile and edge hardware. The challenge is adapting models trained
+                    on abundant compute to run efficiently on constrained devices.</p>
+
+                <p><strong>For Real-World Optimization:</strong> Measure everything. Peak throughput numbers are
+                    marketing material—real-world performance depends on your specific workload. Use profilers,
+                    understand your memory-compute balance, and don't assume a faster processor will automatically make
+                    your code faster.</p>
+            </section>
+
+            <section>
+                <h2>Conclusion</h2>
+                <p>The shift from CPUs to specialized accelerators—GPUs, NPUs, and TPUs—is one of the defining
+                    developments in modern computing. Each has emerged for good reason: GPUs because they unlocked
+                    massively parallel computation, NPUs because they bring that computation to the edge, and TPUs
+                    because extreme specialization beats generality for specific workloads.</p>
+
+                <p>Understanding these processors, their strengths, their limitations, and how to optimize for them is
+                    becoming a core competency for anyone serious about AI. The era of "just run it on a GPU" is giving
+                    way to a more sophisticated understanding of the hardware-software co-design that makes AI systems
+                    actually work.</p>
+
+                <p>The next generation of ML engineers will be those who not only understand algorithms and frameworks,
+                    but also the hardware underneath—and how to optimize the whole system as a unified whole.</p>
+            </section>
+
+            <p class="back-link"><a href="../technical.html">← Back to all posts</a></p>
+        </article>
+    </main>
+</body>
+
+</html>
