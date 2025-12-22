@@ -473,68 +473,68 @@ article li {
     font-weight: 500;
 }
 
-/* Blog preview styles for homepage */
-.blog-preview {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.blog-preview:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #ff6800;
-}
-
-.blog-preview-link {
-    text-decoration: none;
-    color: inherit;
+/* Blog post styles for homepage */
+.blog-post {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.blog-preview-link::after {
-    display: none;
+.blog-post:hover {
+    border-color: #ff6800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.blog-preview-content {
+.blog-post-content {
     flex: 1;
 }
 
-.blog-preview-image {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0;
-}
-
-.blog-preview-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #000;
+.blog-post-title {
+    font-size: 22px;
+    font-weight: 400;
     margin: 0 0 8px 0;
+    color: #1a5276;
 }
 
-.blog-preview-date {
+.blog-post-title a {
+    color: #1a5276;
+    text-decoration: none;
+    border-bottom: 2px solid #ff6800;
+    padding-bottom: 2px;
+}
+
+.blog-post-title a::after {
+    display: none;
+}
+
+.blog-post-title a:hover {
+    color: #ff6800;
+}
+
+.blog-post-date {
     font-size: 13px;
     color: #888;
     font-style: italic;
+    display: block;
+    margin-bottom: 12px;
 }
 
-.blog-preview-excerpt {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
-    margin: 12px 0;
+.blog-post-excerpt {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.7;
+    margin: 0;
 }
 
-.read-more {
-    font-size: 14px;
-    color: #ff6800;
-    font-weight: 500;
+.blog-post-image {
+    width: 200px;
+    height: auto;
+    flex-shrink: 0;
 }
 
 /* Article image styles */
@@ -549,15 +549,14 @@ article li {
     border-radius: 8px;
 }
 
-/* Mobile responsive for blog preview */
+/* Mobile responsive for blog post */
 @media screen and (max-width: 768px) {
-    .blog-preview-link {
-        flex-direction: column-reverse;
+    .blog-post {
+        flex-direction: column;
     }
 
-    .blog-preview-image {
+    .blog-post-image {
         width: 100%;
-        height: auto;
-        max-height: 200px;
+        max-width: 300px;
     }
 }
