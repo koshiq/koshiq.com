@@ -532,7 +532,7 @@ article li {
 }
 
 .blog-post-image {
-    width: 200px;
+    width: 280px;
     height: auto;
     flex-shrink: 0;
 }
@@ -544,7 +544,7 @@ article li {
 }
 
 .article-image img {
-    max-width: 60%;
+    max-width: 80%;
     height: auto;
     border-radius: 8px;
 }
