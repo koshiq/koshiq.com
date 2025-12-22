@@ -504,8 +504,8 @@ article li {
 }
 
 .blog-preview-image {
-    width: 180px;
-    height: 120px;
+    width: 120px;
+    height: 80px;
     object-fit: cover;
     border-radius: 6px;
     flex-shrink: 0;
@@ -544,7 +544,7 @@ article li {
 }
 
 .article-image img {
-    max-width: 100%;
+    max-width: 60%;
     height: auto;
     border-radius: 8px;
 }
